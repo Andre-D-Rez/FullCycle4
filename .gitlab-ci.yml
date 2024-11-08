@@ -1,4 +1,4 @@
 test-job:
-  stage: test
-  script:
-    - echo "This job tests something"
+    stage: test
+    script:
+        - echo "This job tests something"

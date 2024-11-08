@@ -13,9 +13,9 @@ Exemplo de arquivo .gitlab-ci.yml que executa um stage chamado “test-job” ex
 
 ```
 test-job:
-  stage: test
-  script:
-    - echo "This job tests something"
+    stage: test
+    script:
+        - echo "This job tests something"
 ```
 
 ## Exercício Proposto
