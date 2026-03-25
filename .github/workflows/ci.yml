@@ -1,0 +1,18 @@
+name: CI DevOps
+
+on:
+  push:
+    branches: [ "main", "master" ]
+
+jobs:
+  test-job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Teste 1
+        run: echo "This job tests something"
+
+  test-job2:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Teste 2
+        run: echo "Executando o test-job2 da Ação 1"
