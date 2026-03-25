@@ -16,11 +16,14 @@ jobs:
         with:
           python-version: "3.11"
 
-      - name: Instalar Flask
-        run: pip install flask
+      - name: Instalar dependências (Flask e Coverage)
+        run: pip install flask coverage
 
-      - name: Rodar testes unitários
-        run: python -m unittest -v tests/appTest.py
+      - name: Rodar testes com Coverage
+        run: python -m coverage run -m unittest -v tests/appTest.py
+
+      - name: Exibir relatório de cobertura
+        run: python -m coverage report
 
   test-job2:
     runs-on: ubuntu-latest
