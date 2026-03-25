@@ -8,7 +8,7 @@ jobs:
   test-job:
     runs-on: ubuntu-latest
     steps:
-      - name: Teste 1
+      - name: test
         run: echo "This job tests something"
 
   test-job2:
