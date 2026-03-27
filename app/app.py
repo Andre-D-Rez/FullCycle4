@@ -15,7 +15,7 @@ def hello():
         return "Nome não informado", 400
     else:
         # Usamos o escape() aqui para blindar a variável "name"
-        return f"Hello, {escape(name)}!"
+        return f"Hello, {escape(name)}!" # nosemgrep
 
 if __name__ == "__main__": # pragma: no cover
     # Deixamos apenas o app.run() padrão, sem o modo debug
