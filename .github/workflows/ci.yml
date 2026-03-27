@@ -5,7 +5,16 @@ on:
     branches: [ "main", "master" ]
 
 jobs:
+  # Roteiro 5 / CD
+  build-job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Simular Build
+        run: echo "Iniciando o build para o usuário ${{ github.actor }}..."
+
+  # Roteiro 4 / CI
   test-job:
+    needs: build-job
     runs-on: ubuntu-latest
     steps:
       - name: Baixar o código do repositório
@@ -30,9 +39,3 @@ jobs:
     steps:
       - name: Teste 2
         run: echo "Executando o test-job2 da Ação 1"
-  
-  test-job3:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Teste 3
-        run: echo "Executanto o test-job3"
