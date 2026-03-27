@@ -41,12 +41,13 @@ jobs:
           if vulnerabilities:
               print(f'\n== Relatório de Vulnerabilidades ({len(vulnerabilities)} encontradas) ==')
               for vuln in vulnerabilities:
-                  print(f'\n- Nome: {vuln.get(\"name\", \"Sem nome\")}')
+                  print('\n--- DETALHES DA FALHA ---')
+                  print(json.dumps(vuln, indent=2))
               exit(1)
           else:
               print('Nenhuma vulnerabilidade encontrada.')
           "
-
+          
   # Roteiro 4 / CI
   test-job:
     needs: build-job
