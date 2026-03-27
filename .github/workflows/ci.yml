@@ -48,6 +48,17 @@ jobs:
               print('Nenhuma vulnerabilidade encontrada.')
           "
           
+  deploy-prod-job:
+    needs: [test-job, sast-job] # Só faz o deploy se TODOS os testes passarem
+    runs-on: ubuntu-latest
+    environment: production # É isso aqui que ativa o botão amarelo de aprovação no GitHub!
+    steps:
+      - name: Implantação
+        run: |
+          echo "Iniciando deploy da branch ${{ github.ref_name }} em produção..."
+          sleep 10
+          echo "Deploy concluído com sucesso! A aplicação está no ar."
+          
   # Roteiro 4 / CI
   test-job:
     needs: build-job
