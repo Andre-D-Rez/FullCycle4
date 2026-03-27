@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Simular Build
-        run: echo "Iniciando o build para o usuário ${{ github.actor }}..."
+        run: echo "Iniciando o build para o usuário Andre..."
 
   # Roteiro 4 / CI
   test-job:
