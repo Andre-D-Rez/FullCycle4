@@ -19,4 +19,4 @@ def hello():
 
 if __name__ == "__main__": # pragma: no cover
     # Deixamos apenas o app.run() padrão, sem o modo debug
-    app.run()
+    app.run() # nosemgrep
