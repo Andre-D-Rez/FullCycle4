@@ -11,6 +11,41 @@ jobs:
     steps:
       - name: Simular Build
         run: echo "Iniciando o build para o usuário Andre..."
+   
+  sast-job:
+    needs: build-job
+    runs-on: ubuntu-latest
+    steps:
+      - name: Baixar o código do repositório
+        uses: actions/checkout@v4
+
+      - name: Configurar o Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Instalar Semgrep
+        run: pip install semgrep
+
+      - name: Executar Semgrep (Gerando JSON)
+        run: semgrep scan --config auto --gitlab-sast -o gl-sast-report.json || true
+
+      - name: Validar o relatório SAST (Script Python)
+        run: |
+          echo "Validando o relatório SAST..."
+          python -c "
+          import json
+          with open('gl-sast-report.json') as f:
+              report = json.load(f)
+          vulnerabilities = report.get('vulnerabilities', [])
+          if vulnerabilities:
+              print(f'\n== Relatório de Vulnerabilidades ({len(vulnerabilities)} encontradas) ==')
+              for vuln in vulnerabilities:
+                  print(f'\n- Nome: {vuln.get(\"name\", \"Sem nome\")}')
+              exit(1)
+          else:
+              print('Nenhuma vulnerabilidade encontrada.')
+          "
 
   # Roteiro 4 / CI
   test-job:
