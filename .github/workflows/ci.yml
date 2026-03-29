@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Simular Build
-        run: echo "Iniciando o build para o usuário Andre..."
+        run: echo "Olá, ${{ github.actor }}! Iniciando o build..."
    
   sast-job:
     needs: build-job
@@ -55,8 +55,8 @@ jobs:
     steps:
       - name: Implantação
         run: |
-          echo "Iniciando deploy da branch ${{ github.ref_name }} em produção..."
-          sleep 10
+          echo "Implantando a branch ${{ github.ref_name }} em produção..."
+          sleep 20
           echo "Deploy concluído com sucesso! A aplicação está no ar."
           
   # Roteiro 4 / CI
@@ -82,6 +82,7 @@ jobs:
         run: python -m coverage report
 
   test-job2:
+    needs: build-job
     runs-on: ubuntu-latest
     steps:
       - name: Teste 2
